@@ -2,7 +2,7 @@
  * 验证类
  * @type {{conf: Function, isEmail: Function, isMobile: Function, isPhone: Function, isChinese: Function, isCode: Function}}
  */
-var $validator={
+var $Validator={
 conf:function(){
     var arr=new Array()
     arr['Email']=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
