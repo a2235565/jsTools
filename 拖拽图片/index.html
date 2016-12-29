@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽</title>
+	<style>
+		* {
+			padding: 0px;
+			margin: 0px;
+		}
+		.list{
+			height: 100px;
+			border: #000 1px solid; 
+			width: 60%;
+			display: block;
+			margin: 10px auto;
+			text-align: center;
+			border-radius: 5px;
+		}
+		.list li{
+			float: left;
+			margin:3px; 
+			display: block;
+		   
+		}
+		#work{
+			height: 600px;
+			border: #000 1px solid; 
+			width: 60%;
+			display: block;
+			margin: 10px auto;
+			text-align: center;
+			border-radius: 5px;
+			overflow: hidden;
+			 cursor: crosshair;
+		}
+	</style>
+</head>
+<body ondragstart="return false">
+  <div class='list'>
+  	<li atclass='img1'><img src='1.jpg'></li>
+  	<li atclass='img2'><img src='2.jpg'></li>
+  	<li atclass='img3'><img src='3.jpg'></li>
+  </div>
+  <div id='work'></div>
+	<!--引入支持拖拽功能的js文件-->
+	<script src="jquery.js"></script>
+	<script src="draggable.js"></script>
+	<script src="msgbox.js"></script>
+	<script>
+	 $('.list li').on('click',function(){
+	 	var _this=$(this),
+	 	width=_this.css('width'),
+	 	height=_this.css('height'),
+	 	start='<div class="'+_this.attr('atclass')+'"><a href="javascript:void(0)" style="position: absolute;">',
+	 	end='</a></div>',
+	 	classname=_this.attr('atclass');
+	 	$("#work").append(start+_this.html()+end);
+	 	$("."+classname).css({'display':'block','float':'left'});
+		Draggable(classname);
+		$("."+classname+" img").off('click');
+		$("."+classname+" img").on('click',function(){
+			var _this =$(this);
+			var msg = $msgBox.input('请输入宽度');
+			$('#'+msg.button).off('click');
+			$('#'+msg.button).on('click',function(){
+				var _width=$('#'+msg.input).val();
+				_this.css({'width':_width+'px'});
+				$('#'+msg.box).html(' ');
+				$('#'+msg.box).hide();
+			});
+		});
+	 });
+	</script>
+</body>
+</html>
