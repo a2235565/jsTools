@@ -35,6 +35,7 @@ show:function (_msg){
         _box.style.display='block';
         _box.style.background=conf['bcolor_success'];
         _box.textContent=_msg;
+       _box.innerHTML =_msg;
         setTimeout("document.getElementById('isbox').style.display='none'; ",2000);//延时3秒
 },error:function(_msg){
         var _box=document.getElementById('isbox');
@@ -46,6 +47,7 @@ show:function (_msg){
         _box.style.display='block';
         _box.style.background=conf['bcolor_errot'];
         _box.textContent=_msg;
+       _box.innerHTML =_msg;
         setTimeout("document.getElementById('isbox').style.display='none'; ",2000);//延时3秒
 },input:function(msg){
         /**
