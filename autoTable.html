@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+
+	<title></title>
+</head>
+<body>
+<div id=tablesss></div>
+</body>
+
+
+<script type="text/javascript">
+
+var $aotoTable={
+conf:function(){
+    var arr=new Array();
+	arr['tableId']='table_yzy_create';
+	arr['tableTitle']='Title';
+	arr['addDivId']='tablesss';
+	arr['ext']=false;
+    return arr;
+},
+init:function(option){
+	var conf = this.conf();  
+	var newConf = option.tableValue;
+	for( var key in conf)  {
+		if(newConf[key]!=undefined){
+			conf[key]=newConf[key];
+		}
+	}
+	 
+	var countField=this.len(option.data.field);
+	 if(conf['ext']){countField++}
+	var tableStr='<table><thead><tr><td colspan="'+countField+'" align=center >'+conf['tableTitle']+'</td></tr></thead>';
+	 tableStr+='<tbody><tr>';
+	 for(var i in option.data.field){
+        tableStr+='<td>'+option.data.field[i]+'</td>';
+     }
+      if(conf['ext']){
+      	 tableStr+='<td><a href="javascript:void(0)" class="edit_table" >操作</td>';
+      }
+     tableStr+='</tr>';	
+
+	 for(var temp in option.data.data){
+	 	 tableStr+='<tr>';
+ 		for(var i in option.data.data[temp]){
+	 	for(var j in option.data.field){
+	 	  if(j==i)	
+          tableStr+='<td>'+option.data.data[temp][i]+'</td>';
+        }
+        }	
+          if(conf['ext']){
+          	 tableStr+='<td><a href="javascript:void(0)" class="edit_table" >修改</a> <a href="javascript:void(0)" class="del_table" >删除</a> </td>';
+          }
+		  tableStr+='</tr>';
+     }
+     tableStr+='<tr><td  colspan="'+countField+'" align=right>' +option.data.page+'</td></tr>';;
+     tableStr+='</tbody></table>';
+     document.getElementById(conf['addDivId']).innerHTML+=tableStr;
+       
+},
+len:function(o){
+	 var t = typeof o;
+    if(t == 'string'){
+            return o.length;
+    }else if(t == 'object'){
+            var n = 0;
+            for(var i in o){
+                    n++;
+            }
+            return n;
+    }
+    return false;
+}
+
+};
+//dome 
+$aotoTable.init({'tableValue':{'ext':true,'addDivId':'tablesss','tableTitle':"测试标题",'tableId':'tables111'},'data':{'field':{'1':"测试1字段",'2':'测试2字段'},'data':{0:{'1':1,'2':43242},1:{'1':2,'2':333}},'page':'1,2,3...100'}})
+</script>
+</html>
