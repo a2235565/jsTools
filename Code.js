@@ -1,4 +1,7 @@
-var zyCode = {
+/**
+* @author yzy
+*/
+var Code = {
 
 /**
  * 编码
@@ -6,7 +9,7 @@ var zyCode = {
  * @param $s  分隔符
  * @param salt  int 扩大倍数  >=1
  */
-enCodeForZy:function ($data,$s,salt) {
+enCode:function ($data,$s,salt) {
     var returnStr = '';
     for(var i = 0;i<$data.length;i++){
         returnStr+= $s+""+($data[i].charCodeAt()<<salt)
@@ -22,7 +25,7 @@ enCodeForZy:function ($data,$s,salt) {
  * @param salt  int 扩大倍数  >=1
  */
  ,
-deCodeForZy:function ($code,$s,salt) {
+deCode:function ($code,$s,salt) {
     var list = $code.split($s);
     var returnStr = '';
     for(var i =  0;i<list.length;i++){
@@ -34,8 +37,8 @@ deCodeForZy:function ($code,$s,salt) {
 
 //demo
 /**
-zyCode.enCodeForZy("我的测试用例","das",2)
+Code.enCode("我的测试用例","das",2)
 "das100420das121360das111916das143188das119968das81452"
-zyCode.deCodeForZy("das100420das121360das111916das143188das119968das81452","das",2)
+Code.deCode("das100420das121360das111916das143188das119968das81452","das",2)
 "我的测试用例"
 **/
