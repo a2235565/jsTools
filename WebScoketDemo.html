@@ -7,7 +7,7 @@
 <body>
 
 <p>
-服务器地址(ws://localhost:9502) <input onchange="webSc.setHost(this.value)" value="ws://localhost:9502">
+    服务器地址(ws://localhost:9502) <input onchange="webSc.setHost(this.value)" value="ws://localhost:9502">
 </p>
 <p>
     <input id="msg">
@@ -15,10 +15,12 @@
 </p>
 <p>
     <button onclick="webSc.init(function(data){document.getElementById('list').innerHTML+=data+'<br/>'})">启动连接</button>
+    <button onclick="webSc.reStart()">重新连接</button>
+    <button onclick="webSc.close()">关闭连接</button>
 </p>
 <p> msg list</p>
-<p id="list">
-
+<p id="list" style="    background-color: #d4d4d4;">
+<br/>
 </p>
 <p>php Swoole Server Code</p>
 <pre>
