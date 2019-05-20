@@ -44,6 +44,8 @@ var $aotoTable = {
                 e = JSON.parse(e);
             }
 
+            if(typeof e.data == 'undefined'){  $msgBox.loaddinghide();$msgBox.show('接口异常');return false;}
+
             var maxShow = _this.pageSize;
             var page = '';
             var nowPage = json.page;
@@ -68,7 +70,7 @@ var $aotoTable = {
                 if (json.page == i) {
                     className = 'nowPageClass'
                 }
-                page += '<span onclick="$aotoTable.load({page:' + i + '},true)" class="pageClass ' + className + '">' + i + '</span>'
+                page += '<span onclick="$aotoTable.load({page:' + i + '},true)" class="pageClass ' + className + '">' + parseInt( i) + '</span>'
             }
             page += '...<span onclick="$aotoTable.load({page:' + maxPage + '},true)" class="maxPage pageClass">尾页</span>'
             tabJson['data']['data'] = e.data.list;
