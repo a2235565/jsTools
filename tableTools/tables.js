@@ -7,6 +7,7 @@ var $aotoTable = {
             });
         }
     },
+    tabJson:null,
     dataList: null,
     url: '',
     pageSize: 20,
@@ -70,14 +71,14 @@ var $aotoTable = {
                 if (json.page == i) {
                     className = 'nowPageClass'
                 }
-                page += '<span onclick="$aotoTable.load({page:' + i + '},true)" class="pageClass ' + className + '">' + parseInt( i) + '</span>'
+                page += '<span onclick="$aotoTable.load({page:' + i + '},true)" class="pageClass ' + className + '">' + parseInt(i) + '</span>'
             }
             page += '...<span onclick="$aotoTable.load({page:' + maxPage + '},true)" class="maxPage pageClass">尾页</span>'
             tabJson['data']['data'] = e.data.list;
             tabJson['data']['page'] = page;
             $aotoTable.init(tabJson);
 
-            _this.init(tabJson);
+            _this.init(_this.tabJson);
             $msgBox.loaddinghide()
         }, 'json');
     },
@@ -87,6 +88,7 @@ var $aotoTable = {
         arr['tableTitle'] = 'Title';
         arr['tabClass'] = ' ';
         arr['addDivId'] = 'tablesss';
+        arr['extFunc'] = null;
         arr['ext'] = false;
         return arr;
     },
@@ -132,11 +134,11 @@ var $aotoTable = {
                 }
                 if (power) tableStr += '<td></td>';
             }
-            if (conf['ext'] && typeof conf['extStr'] == "undefined") {
+            if (conf['ext'] && (typeof conf['extFunc'] != "function")) {
                 tableStr += '<td><a href="javascript:void(0)" attr-data-index="' + temp + '" class="edit_table" >修改</a> ' +
                     '<a href="javascript:void(0)"   attr-data-index="' + temp + '"  class="del_table" >删除</a> </td>';
-            } else if (conf['extStr']) {
-                tableStr += '<td>' + conf['extStr'] + '</td>';
+            } else if (conf['extFunc']) {
+                tableStr += '<td>' + conf['extFunc'](option.data.data[temp]) + '</td>';
             }
             tableStr += '</tr>';
         }
@@ -147,6 +149,9 @@ var $aotoTable = {
         if (typeof _this.pageSuccess == "function") {
             _this.pageSuccess();
         }
+    },
+    btnCreate:function(className,Title,bindData){
+      return '<a href="javascript:void(0)"   attr-bind-data="'+bindData+'"  class="'+className+'" >'+Title+'</a> </td>';
     },
     len: function (o) {
         var t = typeof o;
