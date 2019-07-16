@@ -154,7 +154,6 @@ var renderTools = {
                 oldb = b
                 oldc = c
                 oldd = d
-
                 a = md5ff(a, b, c, d, x[i], 7, -680876936)
                 d = md5ff(d, a, b, c, x[i + 1], 12, -389564586)
                 c = md5ff(c, d, a, b, x[i + 2], 17, 606105819)
