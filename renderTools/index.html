@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<div id="nowTime"></div>
+<div id="showDiv"></div>
+<div id="showDiv1"></div>
+<div class="needRenderClass">
+    ${{data.showTitle}}
+    ${{data.haha}}
+    ${{data.xx}}
+</div>
+</body>
+<script src="./jq.js"></script>
+<script src="./renderTools.js"></script>
+<tplList  class="tplClass" attr-value="value" tplId="goods">
+    <p >${{value.goods_id}}:渲染间隙 ${{value.goods_name}}无用文字填充</p>
+</tplList>
+<tplList  class="tplClass" attr-value="value" tplId="goods1">
+    <p>
+        ${{value.goods_id}}:渲染---间隙 ${{value.goods_name}}无用文打撒所大字填充
+    </p>
+</tplList>
+<script>
+    /**
+     * Date函数 无法使用， 否则无法成功渲染页面缓存
+     */
+    $(document).ready(function () {
+        var url = 'http://192.168.8.106/tt/data.php';
+        renderTools.init();
+
+        $.post(url,{},function (e) {
+            renderTools.renderList('goods',e.data.list,'showDiv');
+            renderTools.renderList('goods1',e.data.list,'showDiv1');
+            renderTools.setTitle('测试渲染页面');
+            renderTools.setKeywords('测试|渲染');
+            renderTools.setDescription('测试渲染');
+            $('#nowTime').html( renderTools.getIntTime());
+        });
+        renderTools.renderInfo({
+            showTitle:'测试渲染单环境',
+            haha:'测试渲染单环境1',
+            xx:'测试渲染单环境2',
+        });
+    });
+
+
+</script>
+</html>
