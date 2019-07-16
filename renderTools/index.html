@@ -15,7 +15,7 @@
     ${{data.xx}}
 </div>
 </body>
-<script src="./jq.js"></script>
+<script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
 <script src="./renderTools.js"></script>
 <tplList  class="tplClass" attr-value="value" tplId="goods">
     <p >${{value.goods_id}}:渲染间隙 ${{value.goods_name}}无用文字填充</p>
@@ -35,9 +35,6 @@
 
         $.post(url,{},function (e) {
             // e ->  {code:200,msg:'',data:{list:[{goods_id:1,goods_name:213}],count:1}}
-            
-            
-            
             renderTools.renderList('goods',e.data.list,'showDiv');
             renderTools.renderList('goods1',e.data.list,'showDiv1');
             renderTools.setTitle('测试渲染页面');
