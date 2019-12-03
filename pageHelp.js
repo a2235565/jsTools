@@ -1,4 +1,4 @@
-    var pageHelp = {
+。    var pageHelp = {
         nowPage:1,
         pageStr:'',
         rowSize:8,
