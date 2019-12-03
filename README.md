@@ -23,3 +23,14 @@ tools.js
 ```
 基于easyswoole的websocket案例
 ```
+## pageHelp
+```
+page渲染工具
+//pageHelp.setDataSize(200)
+//pageHelp.setNowPage(3)
+//pageHelp.doRender(function(page){
+ return  "?page="+page;
+},function(page){
+ return  "doRenderList("+page+')';
+})
+```
