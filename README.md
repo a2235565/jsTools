@@ -26,9 +26,9 @@ tools.js
 ## pageHelp
 ```
 page渲染工具
-//pageHelp.setDataSize(200)
-//pageHelp.setNowPage(3)
-//pageHelp.doRender(function(page){
+pageHelp.setDataSize(200)
+pageHelp.setNowPage(3)
+pageHelp.doRender(function(page){
  return  "?page="+page;
 },function(page){
  return  "doRenderList("+page+')';
