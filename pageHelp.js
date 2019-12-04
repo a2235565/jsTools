@@ -1,8 +1,13 @@
-var pageHelp = {
+ var pageHelp = {
         nowPage:1,
         pageStr:'',
         rowSize:8,
         dataSize:0,
+        showCss:function(){
+            $('body').append(
+                '<style>.pages a{text-decoration:none;color: #000}   .pages{margin-top:10px;width:100%;height:38px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;font-family:Microsoft YaHei;color:#999}.pages div{width:88px;height:38px;background:rgba(255,255,255,1);border:1px solid rgba(228,228,228,1);border-radius:2px;text-align:center;line-height:38px;margin-right:5px;cursor:pointer}.pages p{width:38px;height:38px;background:rgba(255,255,255,1);border:1px solid rgba(228,228,228,1);border-radius:2px;line-height:38px;text-align:center;margin-right:5px;cursor:pointer}.pages .moveClass{border:0;background:inherit}.pages p:hover{background:#c4aa7c;color:#fff}.pages .active-pages{background:#c4aa7c;color:#fff}</style>'
+            );
+        },
         setNowPage:function (page) {
             this.nowPage = page
         },
@@ -20,7 +25,7 @@ var pageHelp = {
         },
         doRender:function (hrefCallback=null,onclickCallbacl=null) {
             let _this = this;
-                _this.pageStr = '';
+            _this.pageStr = '';
             if (Math.floor(_this.dataSize / _this.rowSize) == 0) {
                 _this.pageStr += '<p class="active-pages">1</p>';
             } else {
@@ -36,7 +41,7 @@ var pageHelp = {
                     if(typeof hrefCallback== "function"){
                         tempHref = hrefCallback(page)
                     }else{
-                        tempHref ="?page=" + page ;
+                        tempHref ="?page=" + page + ".html";
                     }
                     if (typeof onclickCallbacl == "function") {
                         tempOnClick = onclickCallbacl(page);
@@ -69,13 +74,21 @@ var pageHelp = {
                 }
                 if (max - start >= 3) {
                     renderShowStr(max)
-                    _this.pageStr += "<p  onclick='"+tempOnClick+"' href=\""+tempHref+"\" >" + max + "</p>";
+                    _this.pageStr += "<a  onclick='"+tempOnClick+"' href=\""+tempHref+"\" ><p class='pageList'>" + max + "</p></a>";
                 }
             }
-            return _this.getPageStr()
+            return '<div class="pages">'+_this.getPageStr()+'</div>'
         }
     };
-//案例
-//pageHelp.setDataSize(200)
-//pageHelp.setNowPage(3)
-//pageHelp.doRender()
+    // 基于jq  请先导入jq
+    // pageHelp.setNowPage(3)
+    // pageHelp.setDataSize(200)
+    // pageHelp.setRowSize(8)
+    // var pageStr = pageHelp.doRender(function (page) {
+    //     return '?page='+page;
+    // },
+    // function (page) {
+    //     return `doRenderData(${page})`
+    // })
+    // $('#page').html(pageStr);
+    // pageHelp.showCss();
