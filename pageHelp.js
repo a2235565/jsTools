@@ -36,7 +36,7 @@ var pageHelp = {
                     if(typeof hrefCallback== "function"){
                         tempHref = hrefCallback(page)
                     }else{
-                        tempHref ="?page=" + page + ".html";
+                        tempHref ="?page=" + page ;
                     }
                     if (typeof onclickCallbacl == "function") {
                         tempOnClick = onclickCallbacl(page);
