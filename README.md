@@ -25,12 +25,16 @@ tools.js
 ```
 ## pageHelp
 ```
-page渲染工具
-pageHelp.setDataSize(200)
-pageHelp.setNowPage(3)
-pageHelp.doRender(function(page){
- return  "?page="+page;
-},function(page){
- return  "doRenderList("+page+')';
-})
+    // 基于jq 的 page渲染工具
+    pageHelp.setNowPage(3)
+    pageHelp.setDataSize(200)
+    pageHelp.setRowSize(8)
+    var pageStr = pageHelp.doRender(function (page) {
+        return '?page='+page;
+    },
+    function (page) {
+        return `doRenderData(${page})`
+    })
+    $('#page').html(pageStr);
+    pageHelp.showCss();
 ```
