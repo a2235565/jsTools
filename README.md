@@ -1,4 +1,9 @@
 # jsTools
+
+## renderTools
+```
+    仿造vue风格渲染数据 详情请看index页面
+```
 ## msgbox.js
 ``` 
 简易的 msgbox 工具  绑定页面$msgBox变量
