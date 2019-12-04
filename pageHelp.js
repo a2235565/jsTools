@@ -20,6 +20,7 @@ var pageHelp = {
         },
         doRender:function (hrefCallback=null,onclickCallbacl=null) {
             let _this = this;
+                _this.pageStr = '';
             if (Math.floor(_this.dataSize / _this.rowSize) == 0) {
                 _this.pageStr += '<p class="active-pages">1</p>';
             } else {
